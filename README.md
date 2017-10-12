@@ -11,3 +11,10 @@ A Discord bot which imitates a priority speaker function. Made with Discord.js A
 > -   [SQLite](https://www.npmjs.com/package/sqlite) (npm install sqlite --save): dependency for Discord.js-Commando
 > -   [Discord.js-Commando](https://www.npmjs.com/package/discord.js-commando) (npm install discord.js-commando --save): an extension to the Discord.js API which handles commands.
 > -   [Discord.js](https://www.npmjs.com/package/discord.js) (npm install discord.js --save): the Discord API wrote in javascript
+
+## Bot settings
+
+> -   token: The token used to identify the bot.
+> -   owner: A user ID. This user will be able to use any command of the bot.
+> -   administrationRole: A role that allows users in it to use all bot commands (like the owner).
+> -   notPrioritizedChannel: A channels ID list. In these channels, the bot will not have any effect.
