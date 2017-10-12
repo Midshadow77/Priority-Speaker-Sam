@@ -14,7 +14,7 @@ A Discord bot which imitates a priority speaker function. Made with Discord.js A
 
 ## Bot settings
 
-> -   token: The token used to identify the bot.
-> -   owner: A user ID. This user will be able to use any command of the bot.
-> -   administrationRole: A role that allows users in it to use all bot commands (like the owner).
-> -   notPrioritizedChannel: A channels ID list. In these channels, the bot will not have any effect.
+> -   __token__: The token used to identify the bot.
+> -   __owner__: A user ID. This user will be able to use any command of the bot.
+> -   __administrationRole__: A role that allows users in it to use all bot commands (like the owner).
+> -   __notPrioritizedChannel__: A channels ID list. In these channels, the bot will not have any effect.
