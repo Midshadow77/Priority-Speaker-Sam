@@ -8,4 +8,6 @@ A Discord bot which imitates a priority speaker function. Made with Discord.js A
 > -   [Node-opus](https://www.npmjs.com/package/node-opus) (npm install node-opus --save): for voice support
 > -   [Sodium](https://www.npmjs.com/package/sodium) (npm install sodium --save): for faster voice packet encryption and decryption
 > -   [UWS](https://www.npmjs.com/package/uws) (npm install uws --save): for a much faster WebSocket connection
+> -   [SQLite](https://www.npmjs.com/package/sqlite) (npm install sqlite --save): dependency for Discord.js-Commando
+> -   [Discord.js-Commando](https://www.npmjs.com/package/discord.js-commando) (npm install discord.js-commando --save): an extension to the Discord.js API which handles commands.
 > -   [Discord.js](https://www.npmjs.com/package/discord.js) (npm install discord.js --save): the Discord API wrote in javascript
