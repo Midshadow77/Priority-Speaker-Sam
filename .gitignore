@@ -60,3 +60,6 @@ typings/
 # dep
 node_modules
 .nexe
+
+# db
+src/commands.sqlite3
