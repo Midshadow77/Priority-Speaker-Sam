@@ -1,6 +1,7 @@
 const BotSettings = require ('../botSettings.json');
 const Console = require('console');
 const DiscordJS = require('discord.js-commando');
+const Path = require('path');
 const SQLite = require('sqlite');
 
 const CLIENT = new DiscordJS.Client({
@@ -8,11 +9,25 @@ const CLIENT = new DiscordJS.Client({
 	commandPrefix: '' //Disable prefix and use only mentions.
 });
 
-CLIENT.on('ready', () => { Console.info('Ready.'); });
+CLIENT.on('ready', () => {
+	CLIENT.user.setStatus('dnd')
+		.then(
+			() => {
+				const GUILD = CLIENT.guilds.get(BotSettings.guild);
 
-CLIENT.setProvider(SQLite.open('./commands.sqlite3').then(
+				if(typeof GUILD !== 'undefined' && GUILD.available) {
+					Console.info('Ready.');
+				} else {
+					throw new Error('Guild don\'t available.');
+				}
+			},
+			(err) => Console.error(err)
+		).catch(Console.error);
+});
+
+CLIENT.setProvider(SQLite.open(Path.join(__dirname, './commands.sqlite3')).then(
 	(db) => new DiscordJS.SQLiteProvider(db),
 	(err) => Console.error(err))
-);
+).catch(Console.error);
 
 CLIENT.login(BotSettings.token);

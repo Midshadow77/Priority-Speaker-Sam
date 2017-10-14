@@ -62,4 +62,4 @@ node_modules
 .nexe
 
 # db
-src/commands.sqlite3
+commands.sqlite3
