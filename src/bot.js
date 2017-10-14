@@ -32,4 +32,10 @@ CLIENT.setProvider(SQLite.open(Path.join(__dirname, './commands.sqlite3')).then(
 	(err) => Console.error(err))
 ).catch(Console.error);
 
+CLIENT
+	.registry
+	.registerDefaults() //Registers all built-in groups, commands, and argument types
+	.registerGroup('priority_speaker', 'Priority speaker commands.')
+	.registerCommandsIn(Path.join(__dirname, 'commands')); //Registers all of your commands in the ./commands/ directory
+
 CLIENT.login(BotSettings.token);
