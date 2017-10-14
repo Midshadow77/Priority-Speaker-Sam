@@ -9,6 +9,8 @@ const CLIENT = new DiscordJS.Client({
 	commandPrefix: '' //Disable prefix and use only mentions.
 });
 
+CLIENT.prioritySpeakers = new Map();
+
 CLIENT.on('ready', () => {
 	CLIENT.user.setStatus('dnd')
 		.then(
