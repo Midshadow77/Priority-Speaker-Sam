@@ -1,7 +1,7 @@
 const Commando = require('discord.js-commando');
 const Console = require('console');
 const oneLine = require('common-tags').oneLine;
-const BotSettings = require('../../BotSettings.json');
+const BotSettings = require('../../../BotSettings.json');
 
 module.exports = class StartCommand extends Commando.Command {
 	constructor(client) {
