@@ -39,7 +39,7 @@ module.exports = class AddSpeakerCommand extends Commando.Command {
 	}
 
 	async run(msg, ) {
-		let mentionedUsers;
+		let mentionedUsers = '';
 
 		for(const user of msg.mentions.members.values()) {
 			if(msg.client.user.id !== user.id) {
