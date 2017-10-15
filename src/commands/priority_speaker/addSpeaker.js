@@ -1,4 +1,4 @@
-const DiscordJS = require('discord.js-DiscordJS');
+const DiscordJS = require('discord.js-commando');
 const Console = require('console');
 const oneLine = require('common-tags').oneLine;
 const BotSettings = require('../../../BotSettings.json');
