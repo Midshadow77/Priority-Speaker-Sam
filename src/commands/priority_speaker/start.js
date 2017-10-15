@@ -30,6 +30,29 @@ module.exports = class StartCommand extends DiscordJS.Command {
 		return havePermission;
 	}
 
+	speakingCallback(user, speaking) {
+		const CLIENT = user.client;
+
+		if(CLIENT.user.presence.status === 'online' && CLIENT.prioritySpeakers.has(user.id)) {
+			const guildMember = CLIENT.guilds.get(BotSettings.guild).member(user);
+
+			if(speaking) {
+				Console.log('<' + guildMember.displayName + '> is talking. Mute those who arn\'t in the priority speakers list and in the same channel.');
+
+				guildMember.voiceChannel.members.map((member) => {
+					return member.setMute(!CLIENT.prioritySpeakers.has(member.id)).catch(Console.error);
+				});
+
+			} else {
+				Console.log('<' + guildMember.displayName + '> stopped talking. Unmute those who are muted if nobody in the priority speakers list speaks.');
+
+				guildMember.voiceChannel.members.map((member) => {
+					return member.setMute(false).catch(Console.error);
+				});
+			}
+		}
+	}
+
 	async run(msg, ) {
 		msg.client.user.setStatus('online')
 			.then(

@@ -27,30 +27,6 @@ CLIENT.on('ready', () => {
 		).catch(Console.error);
 });
 
-CLIENT.on('speaking', (user, speaking) => {
-	if(CLIENT.user.presence.status === 'online' && CLIENT.prioritySpeakers.has(user.id)) {
-		const guildMember = CLIENT.guilds.get(BotSettings.guild).member(user);
-
-		if(!BotSettings.notPrioritizedChannel.has(guildMember.voiceChannelID)) {
-
-			if(speaking) {
-				Console.log('<' + guildMember.displayName + '> is talking. Mute those who arn\'t in the priority speakers list and in the same channel.');
-
-				guildMember.voiceChannel.members.map((member) => {
-					return member.setMute(!CLIENT.prioritySpeakers.has(member.id)).catch(Console.error);
-				});
-
-			} else {
-				Console.log('<' + guildMember.displayName + '> stopped talking. Unmute those who are muted if nobody in the priority speakers list speaks.');
-
-				guildMember.voiceChannel.members.map((member) => {
-					return member.setMute(false).catch(Console.error);
-				});
-			}
-		}
-	}
-});
-
 CLIENT.setProvider(SQLite.open(Path.join(__dirname, './commands.sqlite3')).then(
 	(db) => new DiscordJS.SQLiteProvider(db),
 	(err) => Console.error(err))
