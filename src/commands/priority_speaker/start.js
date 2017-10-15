@@ -1,9 +1,9 @@
-const Commando = require('discord.js-commando');
+const DiscordJS = require('discord.js-DiscordJS');
 const Console = require('console');
 const oneLine = require('common-tags').oneLine;
 const BotSettings = require('../../../BotSettings.json');
 
-module.exports = class StartCommand extends Commando.Command {
+module.exports = class StartCommand extends DiscordJS.Command {
 	constructor(client) {
 		super(client, {
 			name: 'start',
