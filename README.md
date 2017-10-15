@@ -18,3 +18,6 @@ A Discord bot which imitates a priority speaker function. Made with Discord.js A
 > -   __owner__: A user ID. This user will be able to use any command of the bot.
 > -   __administrationRole__: A role ID. This role allows users in it to use all bot commands (like the owner).
 > -   __notPrioritizedChannel__: A channels ID list. In these channels, the bot will not have any effect.
+
+## ToDo
+> -   Handle multiple voice channels in the same guild.
