@@ -54,11 +54,37 @@ module.exports = class StartCommand extends DiscordJS.Command {
 	}
 
 	async run(msg, ) {
-		msg.client.user.setStatus('online')
-			.then(
-				() => msg.reply('Priority speaker enabled.').catch(Console.error)
-			).catch(Console.error);
+		const VOICE_CHANNEL = msg.member.voiceChannel;
 
-		Console.log('<' + msg.member.displayName + '> enabled the priority speaker bot.');
+		if(VOICE_CHANNEL) {
+			if(Array.from(BotSettings.notPrioritizedChannel).indexOf(VOICE_CHANNEL.id) === -1) {
+				msg.member.voiceChannel
+					.join()
+					.then(
+						(connection) => {
+							connection.on('speaking', this.speakingCallback);
+							msg.client.user.setStatus('online')
+								.then(
+									() => {
+										msg.reply('Priority speaker enabled.')
+											.then(
+												() => Console.log('<' + msg.member.displayName + '> enabled the priority speaker bot.')
+											).catch(Console.error);
+									}
+								).catch(Console.error);
+						}
+					).catch(Console.error);
+			} else {
+				msg.reply('Priority speaker can\'t be enabled because you\'re voice channel is in the non prioritize channels list.')
+					.then(
+						() => Console.log('<' + msg.member.displayName + '> tried to enable the priority speaker bot but the voice channel is in the non prioritize channels list.')
+					).catch(Console.error);
+			}
+		} else {
+			msg.reply('Priority speaker can\'t be enabled because you\'re not in a voice channel.')
+				.then(
+					() => Console.log('<' + msg.member.displayName + '> tried to enable the priority speaker bot but he wasn\'t in a voice channel.')
+				).catch(Console.error);
+		}
 	}
 };

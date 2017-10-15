@@ -30,14 +30,26 @@ module.exports = class StopCommand extends DiscordJS.Command {
 	}
 
 	async run(msg, ) {
-		msg.client.user.setStatus('dnd').then(
-			() => msg.reply('Priority speaker disabled.').catch(Console.error)
-		).catch(Console.error);
+		if(msg.client.user.presence.status === 'online') {
+			msg.member.voiceChannel.leave();
+			msg.client.user.setStatus('dnd')
+				.then(
+					() => {
+						msg.reply('Priority speaker disabled.')
+							.then(
+								() => Console.log('<' + msg.member.displayName + '> disabled the priority speaker bot.')
+							).catch(Console.error);
+					}
+				).catch(Console.error);
 
-		msg.client.guilds.get(BotSettings.guild).members.map((member) => {
-			return member.setMute(false).catch(Console.error);
-		});
-
-		Console.log('<' + msg.member.displayName + '> disabled the priority speaker bot.');
+			msg.client.guilds.get(BotSettings.guild).members.map((member) => {
+				return member.setMute(false).catch(Console.error);
+			});
+		} else {
+			msg.reply('Priority speaker is already disabled.')
+				.then(
+					() => Console.log('<' + msg.member.displayName + '> tried to disabled the priority speaker bot but it already was.')
+				).catch(Console.error);
+		}
 	}
 };
