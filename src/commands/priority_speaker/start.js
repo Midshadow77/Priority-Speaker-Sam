@@ -42,7 +42,6 @@ module.exports = class StartCommand extends DiscordJS.Command {
 				guildMember.voiceChannel.members.map((member) => {
 					return member.setMute(!CLIENT.prioritySpeakers.has(member.id)).catch(Console.error);
 				});
-
 			} else {
 				Console.log('<' + guildMember.displayName + '> stopped talking. Unmute those who are muted if nobody in the priority speakers list speaks.');
 
@@ -71,13 +70,13 @@ module.exports = class StartCommand extends DiscordJS.Command {
 			} else {
 				msg.reply('Priority speaker can\'t be enabled because you\'re voice channel is in the non prioritize channels list.')
 					.then(
-					() => Console.log('<' + msg.member.displayName + '> tried to enable the priority speaker bot but the voice channel is in the non prioritize channels list.')
+						() => Console.log('<' + msg.member.displayName + '> tried to enable the priority speaker bot but the voice channel is in the non prioritize channels list.')
 					).catch(Console.error);
 			}
 		} else {
 			msg.reply('Priority speaker can\'t be enabled because you\'re not in a voice channel.')
 				.then(
-				() => Console.log('<' + msg.member.displayName + '> tried to enable the priority speaker bot but he wasn\'t in a voice channel.')
+					() => Console.log('<' + msg.member.displayName + '> tried to enable the priority speaker bot but he wasn\'t in a voice channel.')
 				).catch(Console.error);
 		}
 	}
